@@ -9,12 +9,12 @@ if (process.env.NODE_ENV !== 'production') {
 require(path.join(process.cwd(), './lib/mongodb'));
 
 var routesMain = require('./routes/routes.main');
-var routesArtist = require('./routes/routes.artists');
+var routesArtists = require('./routes/routes.artists');
 
 var lessCSS = require('less-middleware');
 
 app.set('view engine', 'ejs');
-app.locals.title = 'NODETUNEZ';
+app.locals.title = 'node_album';
 
 app.use(lessCSS('public'));
 
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/', routesMain);
-app.use('/artist', routesArtist);
+app.use('/artist', routesArtists);
 
 app.use(function (req, res) {
   // 400s before 500s

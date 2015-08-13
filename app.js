@@ -46,3 +46,7 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%d', host, port);
 });
+
+// delete function 
+// searching and retrieving data
+// adding CSS partials / JS to a file

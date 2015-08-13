@@ -10,6 +10,7 @@ router.post('/add', function (req, res) {
   console.log('req.body: ', req.body);
   collection.save(req.body, function () {
     console.log('saving req.body');
+    res.redirect('/')
   });
 });
 

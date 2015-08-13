@@ -9,4 +9,9 @@ router.get('/', function (req, res) {
   });
 });
 
+// router.get('/', function (req, res) {
+// 	var collection = global.db.collection('artists');
+// 	collection.remove()
+// })
+
 module.exports = router;

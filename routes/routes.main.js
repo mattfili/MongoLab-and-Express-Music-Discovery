@@ -6,15 +6,14 @@ router.get('/', function (req, res) {
   var collection = global.db.collection('artists');
   collection.find().toArray(function(err, artists) {
     console.log("err: ", err);
-    console.log(artists)
     res.render('templates/index', {artists: artists});
   });
 });
 
-router.post('/:id', function (req, res) {
+router.post('/:id/delete', function (req, res) {
   var collection = global.db.collection('artists');
-
-  collection.remove({_id: ObjectID(req.params.id)}, true)
+  collection.remove({_id: ObjectId(req.params.id)})
+	res.redirect('/')
 
 });
 

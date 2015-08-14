@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <%- include('../templates/header', {page: 'Login'}) %>
+  </head>
+  <body>
+
+    <h1>Login</h1>
+    <form class="pure-form pure-form-stacked" action="/user/login" method="post">
+      <fieldset>
+      	<label>Email</label>
+      	<input type="email" name="email">
+      	<label>Password</label>
+      	<input type="password" name="password">
+      	<input type="submit" value="login">
+      </fieldset>
+    </form>
+
+    
+  </body>
+</html>

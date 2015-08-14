@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var session = require('express-session');
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('./lib/secrets');
@@ -18,6 +20,20 @@ app.set('view engine', 'ejs');
 app.locals.title = 'node_album';
 
 app.use(lessCSS('public'));
+
+app.use(session({
+  secret: 'musicandauth',
+  resave: false,
+  saveUninitialized: true
+}))
+
+app.use(function (req, res, next) {
+  req.session.count = 1;
+  console.log('SESSION>>>>>>>>>>>>>>>>>', req.session);
+  console.log('SESSION ID>>>>>>>>>>>>', req.sessionID)
+  next();
+})
+
 
 app.use(bodyParser.urlencoded({
   extended : true,

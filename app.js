@@ -10,6 +10,7 @@ require(path.join(process.cwd(), './lib/mongodb'));
 
 var routesMain = require('./routes/routes.main');
 var routesArtists = require('./routes/routes.artists');
+var user = require('./routes/user')
 
 var lessCSS = require('less-middleware');
 
@@ -25,6 +26,10 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', routesMain);
 app.use('/artist', routesArtists);
+app.use('/user', user)
+
+app.use(express.static('public'))
+app.use(express.static('www'))
 
 app.use(function (req, res) {
   // 400s before 500s
@@ -40,7 +45,7 @@ app.use(function (err, req, res, next) {
 
 var port = process.env.PORT || 3000;
 
-var server = app.listen(3000, function () {
+  var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
 

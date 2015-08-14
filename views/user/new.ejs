@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <%- include('../templates/header') %>
+  </head>
+  <body>
+
+    <h1>Sign Up</h1>
+    <form class="pure-form pure-form-stacked" action="/user" method="post">
+    <fieldset>
+    	<label>Email</label>
+    	<input type="email" name="email">
+    	<label>Password</label>
+    	<input type="password" name="password">
+    	<label>Confirmation</label>
+    	<input type="password" name="password_confirm">
+    	<input type="submit" value="register">
+    </form>
+	</fieldset>
+    
+  </body>
+</html>

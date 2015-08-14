@@ -11,8 +11,11 @@ router.get('/login', function loginUser(req, res) {
 
 router.post('/login', function doLogin(req, res) {
 	User.login(req.body, function(err, user) {
+		req.session.regenerate(function () {
+			req.session.userId = user._id;
+			res.redirect('/');
+		})
 		console.log(err, user);
-		res.redirect('/user/login');
 	});
 });
 

@@ -27,25 +27,29 @@ app.use(session({
   saveUninitialized: true
 }))
 
-app.use(function (req, res, next) {
-  req.session.count = 1;
-  console.log('SESSION>>>>>>>>>>>>>>>>>', req.session);
-  console.log('SESSION ID>>>>>>>>>>>>', req.sessionID)
-  next();
-})
-
 
 app.use(bodyParser.urlencoded({
   extended : true,
   type     : '*/x-www-form-urlencoded'
 }));
 
-app.use('/', routesMain);
-app.use('/artist', routesArtists);
 app.use('/user', user)
-
+app.use('/', routesMain);
 app.use(express.static('public'))
 app.use(express.static('www'))
+
+app.use(function requireAuth(req, res, next) {
+  if (req.session.userId) {
+    next();
+  } else {
+    res.redirect('/user/login')
+  }
+})
+
+
+app.use('/artist', routesArtists);
+
+
 
 app.use(function (req, res) {
   // 400s before 500s
